@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Home Page</title>
+  <style>
+
+    * {margin:0; padding:0; box-sizing:border-box; font-family:"Poppins", sans-serif;}
+    
+    body {
+      background: 
+    linear-gradient(rgba(255, 153, 102, 0.4), rgba(255, 94, 98, 0.4)),url('Lady-Shri-Ram-College-1.webp');
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+color: #333;
+min-height: 100vh;
+
+}
+
+
+    header {
+      text-align: center;
+      padding: 3rem 1rem;
+      background-color: rgba(0,0,0,0.5);
+      color: #fff;
+    }
+    header h1 { font-size: 3rem; margin-bottom: 0.5rem; }
+    header p { font-size: 1.2rem; opacity:0.9; }
+
+    /* Profiles */
+
+    .navbar {
+  
+  top: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 2rem;
+  z-index: 999;
+}
+
+.navbar .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #f5c542;
+  letter-spacing: 1px;
+}
+
+.navbar .nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navbar .nav-links li {
+  display: inline-block;
+}
+
+.navbar .nav-links a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.navbar .nav-links a:hover {
+  background: #f5c542;
+  color: #000;
+}
+.hero{
+  padding-top: 30px;
+}
+    .profiles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+    .card {
+      background: rgba(247, 246, 246, 0.95);
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      text-align: center;
+      padding: 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+    }
+    .card img {
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      border: 3px solid #536e9e;
+    }
+    .card h3 { color: #2575fc; margin-bottom: 0.3rem; }
+    .card p { font-size: 0.9rem; color: #837272; }
+
+    /* Register button */
+    .register-btn {
+      display: block;
+      margin: 2rem auto;
+      background: #eae8e7;
+      color: #2a1f1f;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-size: 1.2rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .register-btn:hover {
+      background: #e64a19;
+      transform: scale(1.05);
+    }
+
+    /* Modals */
+    .modal {
+      display: none;
+      position: fixed;
+      inset:0;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .modal-content {
+      background: #fff;
+      border-radius: 15px;
+      padding: 2rem;
+      max-width: 500px;
+      width: 90%;
+      text-align: left;
+      position: relative;
+      animation: pop 0.4s ease;
+    }
+    @keyframes pop { from {transform: scale(0.5); opacity:0;} to {transform: scale(1); opacity:1;} }
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #f97171;
+    }
+
+    /* Form styles */
+    .modal-content {
+  width: 90%;
+  max-width: 600px;
+  background: #f9eecd;
+  padding: 30px;
+  border-radius: 10px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #d96a6a;
+  background-color: #faa5fe; /* <-- yeh background color set karta hai */
+  .form-group {
+  background-color: #feedaa; /* Form container background */
+  padding: 16px;
+  border-radius: 8px;
+}
+  background-color: #e5eded; /* Fields ka background color */
+}
+
+.rankings {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ranking-card {
+  flex: 1;
+  min-width: 300px;
+  background: #fdfdfd;
+  border: 2px solid #c77a7a;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.ranking-card h2 {
+  text-align: center;
+  color: #8b0000;
+  margin-bottom: 1rem;
+}
+
+.ranking-card ul {
+  list-style: none;
+}
+
+.ranking-card li {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.ranking-card li span {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #555;
+  color: #fff;
+  font-weight: bold;
+  margin-right: 0.8rem;
+  text-align: center;
+  line-height: 28px;
+}
+.footer {
+  background-color: #800000; /* dark maroon */
+  color: #fff;
+  padding: 2rem 1rem;
+}
+
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.footer-column h3 {
+  margin-bottom: 0.8rem;
+  font-size: 1.1rem;
+  text-decoration: underline;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin: 0.4rem 0;
+}
+
+.footer-column ul li a {
+  text-decoration: none;
+  color: #ddd;
+  transition: color 0.3s;
+}
+
+.footer-column ul li a:hover {
+  color: #fff;
+}
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 1rem;
+  font-size: 0.9rem;
+}
+
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Lady Shree Ram College</h1>
+  <p>Explore Student Profiles & Register New Students</p>
+</header>
+ <nav class="navbar">
+  <div class="logo">
+  <img src="https://tse2.mm.bing.net/th/id/OIP.gy7HZEPsGjrC82N6wimPQwHaBn?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3" height="100" alt="LSR College Logo">
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About Us</a></li>
+    <li><a href="#">Departments</a></li>
+    <li><a href="#">Admissions</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</nav>
+ <section align="center" class="hero">
+    <h2>Welcome to Lady Shree Ram College</h2>
+ </section>
+
+
+<section class="profiles">
+  <div class="card" onclick="openProfile('John Doe','MCA 1st Year','Modules: Web Development, Database Management UI/UX Design')">
+    <img src="https://i.pravatar.cc/150?img=1" alt="student">
+    <h3>John Doe</h3>
+    <p>Student ID:121</p>
+    <p> Year:MCA 1st Year</p>
+  </div>
+  <div class="card" onclick="openProfile('Emma Watson','B.Tech IT 3rd Year','Modules: AI, Data Structures, Networking')">
+    <img src="https://i.pravatar.cc/150?img=2" alt="student">
+    <h3>Emma Watson</h3>
+    <p>Student ID:122</p>
+    <p>Year:B.Tech IT 3rd Year</p>
+  </div>
+  <div class="card" onclick="openProfile('Aman Gupta','MCA 2nd Year','Modules: Java, Cloud Computing, Algorithms')">
+    <img src="https://i.pravatar.cc/150?img=3" alt="student">
+    <h3>Aman Gupta</h3>
+    <P>Student ID:113</P>
+    <p>Year:MCA 2nd Year</p>
+  </div>
+  <div class="card" onclick="openProfile('Sophia Lee','B.Sc IT 3rd Year','Modules: Python, Data Science, Web Dev')">
+    <img src="https://i.pravatar.cc/150?img=4" alt="student">
+    <h3>Sophia Lee</h3>
+    <P>Student ID:110</P>
+    <p>Year:B.Sc IT 3rd Year</p>
+  </div>
+  <div class="card" onclick="openProfile('Maya Sharma','BCA 2nd Year','Modules: React.js, Node.js, DBMS')">
+    <img src="https://i.pravatar.cc/150?img=5" alt="student">
+    <h3>Maya Sharma</h3>
+    <p>Student ID:114</p>
+    <p>Year:BCA 2nd year</p>
+  </div>
+</section>
+
+<button class="register-btn" onclick="openForm()">Register New Student</button>
+
+<!-- Profile Modal -->
+<div class="modal" id="profileModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('profileModal')">&times;</span>
+    <h2 id="profileName"></h2>
+    <p id="profileCourse"></p>
+    <p id="profileModules"></p>
+  </div>
+</div>
+
+<!-- Registration Form Modal -->
+<!-- Registration Form Modal -->
+<div class="modal" id="formModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('formModal')">&times;</span>
+    <h2>Student Registration</h2>
+    <form>
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" required>
+      </div>
+      <div class="form-group">
+        <label>Father's Name</label>
+        <input type="text" required>
+      </div>
+      <div class="form-group">
+        <label>Mother's Name</label>
+        <input type="text">
+      </div>
+      <div class="form-group">
+        <label>Date of Birth</label>
+        <input type="date" required>
+      </div>
+      <div class="form-group">
+        <label>Gender</label>
+        <select required>
+          <option value="">Select</option>
+          <option>Male</option>
+          <option>Female</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" required>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" required>
+      </div>
+      <div class="form-group">
+        <label>Address</label>
+        <textarea rows="2" required></textarea>
+      </div>
+      <div class="form-group">
+        <label>City</label>
+        <input type="text" required>
+      </div>
+      <div class="form-group">
+        <label>State</label>
+        <input type="text">
+      </div>
+      <div class="form-group">
+        <label>Pincode</label>
+        <input type="text" required>
+      </div>
+      <div class="form-group">
+        <label>Nationality</label>
+        <input type="text">
+      </div>
+      <div class="form-group">
+        <label>Course</label>
+        <input type="text" required>
+      </div>
+      <div class="form-group">
+        <label>Department</label>
+        <input type="text">
+      </div>
+      <div class="form-group">
+        <label>Year of Study</label>
+        <select required>
+          <option value="">Select</option>
+          <option>1st Year</option>
+          <option>2nd Year</option>
+          <option>3rd Year</option>
+          <option>4th Year</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Enrollment Number</label>
+        <input type="text">
+      </div>
+      <div class="form-group">
+        <label>Roll Number</label>
+        <input type="text">
+      </div>
+      <div class="form-group">
+        <label>Modules</label>
+        <textarea placeholder="Enter modules..." rows="3"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Upload Photo</label>
+        <input type="file">
+      </div>
+
+      <button type="submit" class="submit-btn">Submit</button>
+      <button type="reset" class="reset-btn">Reset</button>
+      <button type="register" class="register-btn">Register</button>
+    </form>
+  </div>
+</div>
+
+<section class="rankings">
+  <div class="ranking-card">
+    <h2>Pursuit of Excellence</h2>
+    <ul>
+      <li><span>1</span> Week-Hansa Survey 2025 - College for Arts</li>
+      <li><span>2</span> Week-Hansa Survey 2025 - College for Commerce</li>
+      <li><span>3</span> Week-Hansa Survey 2025 - College for Science</li>
+    </ul>
+  </div>
+
+  <div class="ranking-card">
+    <h2>Pursuit of Excellence</h2>
+    <ul>
+      <li><span>1</span> India Today Ranking 2025 - College for Psychology</li>
+      <li><span>1</span> India Today Ranking 2025 - College for Economics</li>
+      <li><span>2</span> India Today Ranking 2025 - College for Philosophy</li>
+      <li><span>4</span> India Today Ranking 2025 - College for Sociology</li>
+      <li><span>1</span> Outlook Ranking 2025 - College for Arts</li>
+      <li><span>3</span> India Today Ranking 2025 - College for Arts</li>
+      <li><span>4</span> India Today Ranking 2025 - College for Commerce</li>
+    </ul>
+  </div>
+</section>
+
+<script>
+function openProfile(name, course, modules){
+  document.getElementById('profileName').innerText = name;
+  document.getElementById('profileCourse').innerText = course;
+  document.getElementById('profileModules').innerText = modules;
+  document.getElementById('profileModal').style.display = 'flex';
+}
+
+function openForm(){
+  document.getElementById('formModal').style.display = 'flex';
+}
+
+function closeModal(id){
+  document.getElementById(id).style.display = 'none';
+}
+
+window.onclick = function(e){
+  if(e.target.classList.contains('modal')){
+    e.target.style.display = 'none';
+  }
+}
+</script>
+<footer class="footer">
+  <div class="footer-links">
+    <div class="footer-column">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#">Departments</a></li>
+        <li><a href="#">Internal Assessment</a></li>
+        <li><a href="#">Time Table</a></li>
+        <li><a href="#">Academic Excellence</a></li>
+        <li><a href="#">Office of International Programmes</a></li>
+        <li><a href="#">Research Practices at LSR</a></li>
+        <li><a href="#">Previous year Question Papers</a></li>
+        <li><a href="#">Archives</a></li>
+        <li><a href="#">ASSK</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h3>Useful Links</h3>
+      <ul>
+        <li><a href="#">Career Advancement</a></li>
+        <li><a href="#">Facilities</a></li>
+        <li><a href="#">Placements</a></li>
+        <li><a href="#">Distinguished Alumnae</a></li>
+        <li><a href="#">Distinguished Visitors</a></li>
+        <li><a href="#">Syllabus</a></li>
+        <li><a href="#">Roster for Teaching Faculty</a></li>
+        <li><a href="#">Roster for Non Teaching Staff</a></li>
+        <li><a href="#">Reservation for roster for PwD</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h3>Useful Links</h3>
+      <ul>
+        <li><a href="#">UGC Regulations on Curbing the Menace of Ragging</a></li>
+        <li><a href="#">Scholarships</a></li>
+        <li><a href="#">SC-ST Cell</a></li>
+        <li><a href="#">North East Cell</a></li>
+        <li><a href="#">Internal complaints committee</a></li>
+        <li><a href="#">Important Committees</a></li>
+        <li><a href="#">Innovation Council</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h3>Useful Links</h3>
+      <ul>
+        <li><a href="#">Infrastructural Accessibility</a></li>
+        <li><a href="#">Tenders/Quotations</a></li>
+        <li><a href="#">Vacancies</a></li>
+        <li><a href="#">Ad-hoc vacancies</a></li>
+        <li><a href="#">RTI</a></li>
+        <li><a href="#">Forms</a></li>
+        <li><a href="#">Useful Information</a></li>
+        <li><a href="#">College Annual Reports</a></li>
+        <li><a href="#">Feedback Forms</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; Copyright 2019 Lady Shri Ram College for Women, All rights reserved.</p>
+  </div>
+</footer>
+
+
+</body>
+</html>
